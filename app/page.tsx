@@ -12,6 +12,7 @@ export default function Home() {
   }, [allTasks]);
   return (
     <div className="bg-neutral-50 flex flex-row h-screen w-full items-center justify-center gap-5 px-5 ">
+      <h1>Yet Another Kanban App</h1>
       <Form allTasks={allTasks} setAllTasks={setAllTasks} />
       <TaskList allTasks={allTasks} setAllTasks={setAllTasks} name={"To-Do"} />
       <TaskList
