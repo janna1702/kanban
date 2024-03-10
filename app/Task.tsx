@@ -42,9 +42,20 @@ export const Task: FC<TaskProps> = (props) => {
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     event.dataTransfer.setData("text", event.currentTarget.id);
   };
-
+  const myBorder = "255px 15px 225px 15px/15px 225px 15px 255px";
   return (
-    <div id={props.taskData.id} draggable="true" onDragStart={handleDragStart}>
+    <div
+      style={{ borderRadius: myBorder }}
+      className="w-44 h-44  bg-amber-100 flex flex-col  shadow-lg p-2 "
+      id={props.taskData.id}
+      draggable="true"
+      onDragStart={handleDragStart}
+    >
+      <div className="flex flex-row items-end justify-end">
+        <button className="text-neutral-700  w-7 h-7" onClick={deleteTask}>
+          ✕
+        </button>
+      </div>
       {isInputOpen ? (
         <input onChange={changeInputName} value={props.taskData.name}></input>
       ) : (
@@ -54,16 +65,12 @@ export const Task: FC<TaskProps> = (props) => {
           </h1>
         </>
       )}
-      <select defaultValue={props.taskData.status} onChange={statusChange}>
+      {/* <select defaultValue={props.taskData.status} onChange={statusChange}>
         <option value={"To-Do"}>To-Do</option>
         <option value={"In Progress"}>In Progress</option>
         <option value={"Done"}>Done</option>
         <option value={"Approved"}>Approved</option>
-      </select>
-
-      <button className="bg-gray-300 rounded-lg  w-24 h-7" onClick={deleteTask}>
-        Delete
-      </button>
+      </select> */}
     </div>
   );
 };

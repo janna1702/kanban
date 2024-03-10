@@ -65,16 +65,17 @@ export const TaskList: FC<TaskListProps> = (props) => {
   return (
     <div className="flex flex-col w-3/5 h-3/4 gap-5">
       <div className="rounded-md " style={{ backgroundColor: color }}>
-        <h1 className=" flex justify-center items-center text-xl text-neutral-50  h-12   font-bold text-center ">
-          {props.name + "→"}
-        </h1>{" "}
+        <div className=" flex  justify-between p-5 items-center text-xl text-neutral-50  h-12   font-bold text-center  ">
+          <h1>{props.name}</h1>
+          <h1>{"→"}</h1>
+        </div>{" "}
       </div>
 
       <div
         style={{ backgroundColor: colorBody }}
         onDragOver={enableDropping}
         onDrop={handleDrop}
-        className="w-full h-full  rounded-xl  shadow-lg  "
+        className="w-full h-full rounded-xl  shadow-lg flex flex-col  items-center justify-items-center overflow-scroll pt-5 gap-5"
       >
         {selectedTasks.map((element) => (
           <Task
