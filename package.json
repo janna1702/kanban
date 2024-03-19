@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mongodb": "^6.5.0",
     "next": "14.1.0",
+    "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pg": "^8.11.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.18",

@@ -40,14 +40,23 @@ export const TaskList: FC<TaskListProps> = (props) => {
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    const id = event.dataTransfer.getData("text");
+    console.log("🚀 ~ handleDrop ~ handleDrop:", "handleDrop");
+    const dataTransfer = event.dataTransfer.getData("text");
+    const data: { id: string; name: string } = JSON.parse(dataTransfer);
 
     const newArray = [...props.allTasks];
-    const task = newArray.find((element) => element.id === id);
+    const task = newArray.find((element) => element.id === data.id);
+    console.log(task);
     if (task) {
       task.status = props.name as TaskStatus;
+      props.setAllTasks(newArray);
+    } else {
+      props.setAllTasks([
+        ...newArray,
+        { id: data.id, status: props.name, name: data.name },
+      ]);
     }
-    props.setAllTasks(newArray);
+
     console.log(newArray);
   };
   useEffect(() => {
@@ -75,18 +84,20 @@ export const TaskList: FC<TaskListProps> = (props) => {
         style={{ backgroundColor: colorBody }}
         onDragOver={enableDropping}
         onDrop={handleDrop}
-        className="w-full h-full rounded-xl  shadow-lg flex flex-col  items-center justify-items-center overflow-scroll pt-5 gap-5"
+        className="w-full h-full rounded-xl  shadow-lg   overflow-y-scroll pt-5 gap-5"
       >
-        {selectedTasks.map((element) => (
-          <Task
-            key={element.id}
-            allTasks={props.allTasks}
-            setAllTasks={props.setAllTasks}
-            taskData={element}
-            selectedTasks={selectedTasks}
-            setSelectedTasks={setSelectedTasks}
-          />
-        ))}
+        <div className="block">
+          {selectedTasks.map((element) => (
+            <Task
+              key={element.id}
+              allTasks={props.allTasks}
+              setAllTasks={props.setAllTasks}
+              taskData={element}
+              selectedTasks={selectedTasks}
+              setSelectedTasks={setSelectedTasks}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

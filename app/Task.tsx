@@ -46,7 +46,7 @@ export const Task: FC<TaskProps> = (props) => {
   return (
     <div
       style={{ borderRadius: myBorder }}
-      className="w-44 h-44  bg-amber-100 flex flex-col  shadow-lg p-2 "
+      className="w-44 h-44  bg-amber-100 flex flex-col  shadow-lg p-2  my-10 mx-auto"
       id={props.taskData.id}
       draggable="true"
       onDragStart={handleDragStart}
